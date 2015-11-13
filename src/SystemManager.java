@@ -70,7 +70,7 @@ public class SystemManager {
                     Flight flight = anAirline.createFlight(airportOrg, airportDest, calendar, id);
                     if(flight != null) {
                         return true;
-                        // test Commit GitHub en cours
+                        // test git
                     }
                 }
             }
