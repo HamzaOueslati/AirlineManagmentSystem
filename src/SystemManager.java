@@ -40,7 +40,10 @@ public class SystemManager {
         if(isValidAirport && isUniqAirport ) {
             Airport airport = new Airport(code);
             airports.put(code, airport);
+            System.out.println("creation de l'aeroport: " +code);
         }
+        else
+            System.out.println("l'aeroport ne correspond pas aux criteres");
         return isValidAirport;
     }
 
@@ -51,7 +54,10 @@ public class SystemManager {
         if(isValidAirline && isUniqAirline ) {
             Airline airline = new Airline(name);
             airlines.put(name, airline);
+            System.out.println("creation de la compagnie: " +name);
         }
+        else
+            System.out.println("la compagnie ne correspond pas aux criteres");
         return isValidAirline;
     }
 
@@ -72,25 +78,30 @@ public class SystemManager {
                     calendar.set(year, month, day);
                     Flight flight = airlines.get(nameAirline).createFlight(airportOrg, airportDest, calendar, id);
                     if(flight != null) {
+                        System.out.println("creation vol avec origine:" +airportOrg + "destination: " + airportDest + "date: " + calendar + "id: " +id);
                         return true;
-                        // test git
                     }
                 }
+            else
+                System.out.println("Probleme de creation de vol");
         }
         return false;
     }
 
-    public boolean createSection(String flightID, Integer row, char col, SeatClass seatClass)
+    public boolean createSection(String airline, String flightID, int rows, int cols, SeatClass seatClass, String id)
     {
         // On récupére toutes les valeures contenues dans le HashMap "airlines"
-        for(Airline airline : airlines.values()){
-            if(airline.findFlight(flightID) != null)
+        boolean createSect = false;
+        for(Airline airlineList : airlines.values()){
+            if(airlineList.findFlight(flightID) != null)
             {
-                airline.createSection(flightID, row, col, seatClass);
+                createSect = airlineList.createSection(flightID, rows, cols, seatClass, id);
+                System.out.println("creation de section: " +seatClass+ " pour le vol: "+flightID);
                 return true;
             }
         }
-        return false;
+        return createSect;
+
     }
 
     public HashMap<String, Flight> findAvailableFlights(String org, String  dest)
@@ -99,6 +110,7 @@ public class SystemManager {
         Airport destination = airports.get(dest);
 
         for(Airline airline : airlines.values()){
+
             return airline.getAvailableFlights(origin, destination);
         }
 

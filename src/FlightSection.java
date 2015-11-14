@@ -7,12 +7,29 @@ import java.util.HashMap;
 public class FlightSection {
     private SeatClass section;
     private Seat seat;
+    private String id;
+    private int row;
+    private int col;
 
     private ArrayList<Seat> seats = new ArrayList<>();
 
-    public FlightSection(SeatClass section, Seat seat) {
+    public FlightSection(String id, SeatClass section, int row, int col) {
+        this.id = id;
         this.section = section;
-        this.seat = seat;
+        this.row = row;
+        this.col = col;
+
+        for(int i=0; i<row; i++)
+        {
+            char columnSeat = 'A';
+            for(int j=0; j<col; j++)
+            {
+                SeatID seatID = new SeatID(i, columnSeat);
+                columnSeat++;
+                Seat seat = new Seat(seatID);
+                seats.add(seat);
+            }
+        }
     }
 
     public SeatClass getSection() {
@@ -32,7 +49,7 @@ public class FlightSection {
         return false;
     }
 
-    public boolean bookSeat(SeatID seatID) {
+    public boolean bookSeat() {
         if(hasAvailableSeats()) {
             this.seat.setIsBooked(true);
         }

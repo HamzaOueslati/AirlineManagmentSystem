@@ -43,27 +43,24 @@ public class Airline {
         //TODO: Faire
     }
 
-    public void bookFlight(String flightID, SeatClass seatClass, int row, char col)
-    {
+    /*public void bookFlight(String flightID, SeatClass seatClass, int row, char col) {
         Flight flight = flights.get(flightID);
         SeatID seatID = new SeatID(row, col);
         flight.bookSeat(seatClass, seatID);
-    }
-    public static boolean testUniqCode( HashMap airports, String code)
-    {
+    }*/
+
+    public static boolean testUniqCode(HashMap airports, String code) {
         boolean isUniq = true;
-            if(airports.containsKey(code))
-            {
-                isUniq = false;
-                System.out.println("l'identifiant n'est pas unique");
-            }
+        if (airports.containsKey(code)) {
+            isUniq = false;
+            System.out.println("l'identifiant n'est pas unique");
+        }
         return isUniq;
     }
 
-    public Flight createFlight(Airport orig, Airport dest, Calendar calendar, String id)
-    {
+    public Flight createFlight(Airport orig, Airport dest, Calendar calendar, String id) {
         boolean isValidFlight = Flight.testIdLenght(id);
-        if(isValidFlight) {
+        if (isValidFlight) {
             Flight flight = new Flight(orig, dest, calendar, id);
             flights.put(id, flight);
             return flight;
@@ -71,50 +68,54 @@ public class Airline {
         return null;
     }
 
-    public static boolean testNameLenght(String name){
-        if(name.length() <= 5)
+    public static boolean testNameLenght(String name) {
+        if (name.length() <= 5)
             return true;
         else
             return false;
     }
 
-    public static boolean testUniqName( HashMap<String, Airline> airlines, String name)
-    {
+    public static boolean testUniqName(HashMap<String, Airline> airlines, String name) {
         boolean isUniq = true;
-        if(airlines.containsKey(name))
-        {
+        if (airlines.containsKey(name)) {
             isUniq = false;
         }
         return isUniq;
     }
 
-    public Flight findFlight(String flightId)
-    {
-        if(flights.containsKey(flightId)) {
+    public Flight findFlight(String flightId) {
+        if (flights.containsKey(flightId)) {
+            System.out.println("Vol: " + flightId + "trouve dans la liste de vols");
             return flights.get(flightId);
         }
+        else
+            System.out.println("Le vol que vous renseignez n'existe pas!");
         return null;
     }
 
-    public HashMap<String, Flight> getAvailableFlights(Airport org, Airport dest)
-    {
-        HashMap<String, Flight> flightsAvailable = new HashMap<String, Flight>();
-        for(Flight flight : flights.values()){
-            if(flight.getOrig() == org && flight.getDest() == dest) {
-                 for (FlightSection flightSection : flight.getFlightSection()) {
-                     if (flightSection.hasAvailableSeats()) {
-                         flightsAvailable.put("", flight);
-                     }
-                 }
+    public HashMap<String, Flight> getAvailableFlights(Airport org, Airport dest) {
+        HashMap<String, Flight> flightsAvailable = new HashMap<>();
+        for (Flight flight : flights.values()) {
+            if (flight.getOrig() == org && flight.getDest() == dest) {
+                for (FlightSection flightSection : flight.getFlightSection()) {
+                    if (flightSection.hasAvailableSeats()) {
+                        flightsAvailable.put("", flight);
+                    }
+                }
             }
         }
         return flightsAvailable;
     }
 
-    public boolean createSection(String flightID, Integer row, char col, SeatClass seatClass)
-    {
-        Flight flight = findFlight(flightID);
-        return flight.createSection(flightID, row, col, seatClass);
+    public boolean createSection(String flightID, int row, int col, SeatClass seatClass, String id) {
+        boolean createSection = false;
+        Flight flight = flights.get(flightID);
+        if (flight == null)
+            System.out.println("Impossible de creer la section, Vol inexistant");
+        else
+            for (Flight fl : flights.values()) {
+                createSection = flight.createSection(row, col, seatClass, id);
+            }
+        return createSection;
     }
-
 }

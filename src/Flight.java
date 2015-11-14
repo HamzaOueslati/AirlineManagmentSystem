@@ -50,7 +50,7 @@ public class Flight {
         return true;
     }
 
-    public static boolean checkValidColumn (char column)
+    /*public static boolean checkValidColumn (char column)
     {
         String columnUpper = Character.toString(column).toUpperCase();
         if(columnUpper.equals("A"))
@@ -74,31 +74,36 @@ public class Flight {
         if(columnUpper.equals("J"))
             return true;
         return false;
-    }
+    }*/
 
-    public boolean createSection(String flightID, Integer row, char col, SeatClass seatClass)
+    public boolean createSection(int row, int col, SeatClass seatClass, String flightID)
     {
-        if (row > 100 || !checkValidColumn(col)) {
+        if (row > 100 || row <0) {
+            System.out.println("Creation impossible, Rangs incorrect");
+            return false;
+        }
+        if(col > 10 || col<0) {
+            System.out.println("Creation impossible, colonnes incorrect");
             return false;
         }
 
-        SeatID seatID = new SeatID(row, col);
-        Seat seat = new Seat(seatID);
-        flightSection.add(new FlightSection(seatClass, seat));
+        //SeatID seatID = new SeatID(row, col);
+        //Seat seat = new Seat(seatID);
+        flightSection.add(new FlightSection(flightID, seatClass, row, col));
 
         return true;
     }
 
-    public FlightSection findSection()
+    public SeatClass findSection(SeatClass seatClass)
     {
-        return null;
+        return seatClass;
     }
 
-    public void bookSeat(SeatClass seatClass, SeatID seatID)
+    /*public void bookSeat(SeatClass seatClass, SeatID seatID)
     {
         Seat seat = new Seat(seatID);
         FlightSection flightSection = new FlightSection(seatClass, seat);
-    }
+    }*/
 
     public static boolean testIdLenght(String id){
         if(id.length() <= 5)

@@ -5,6 +5,11 @@ public class Seat {
     private SeatID seatNum;
     private boolean isBooked;
 
+    public Seat(SeatID seatNum, boolean isBooked) {
+        this.seatNum = seatNum;
+        this.isBooked = false;
+    }
+
     public void setSeatNum(SeatID seatNum) {
         this.seatNum = seatNum;
     }
