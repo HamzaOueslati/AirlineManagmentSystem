@@ -3,8 +3,8 @@
  */
 public class Main {
     public static void main(String[] args) {
-        SystemManager res = new SystemManager();
-        // Ai r p o r t s
+        SystemManager res = SystemManager.getInstance();
+        // Airports
         res.createAirport("DEN");
         res.createAirport("DFW");
         res.createAirport("LON");
@@ -16,7 +16,7 @@ public class Main {
         res.createAirport("DEH");
         res.createAirport("DRIrdn3 "); // I n v a l i d e
 
-        // Ai r l i n e s
+        // Airlines
         res.createAirline("DELTA");
         res.createAirline("AIRFR");
         res.createAirline("AMER");
@@ -25,12 +25,12 @@ public class Main {
         res.createAirline("SWEST");
         res.createAirline("FRONTIER"); // I n v a l i d e
 
-        // F l i g h t s
+        // Flights
         res.createFlight("DELTA", "DEN", "LON", 2008, 11, 12, "123");
         res.createFlight("DELTA", "DEN", "DEH", 2009, 8, 9, "567");
         res.createFlight("DELTA", "DEN", "NCE", 2010, 9, 8, "567"); //I n v a l i d e
 
-        // S e c t i o n s
+        // Sections
         res.createSection("JET", "123", 2, 2, SeatClass.economy);
         res.createSection("JET", "123", 1, 3, SeatClass.economy);
         res.createSection("JET", "123", 2, 3, SeatClass.first);

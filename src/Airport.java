@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by hamza on 02/11/2015.
@@ -21,15 +22,14 @@ public class Airport {
             return false;
     }
 
-    public static boolean testUniqCode( ArrayList <Airport> airports, String code)
+    public static boolean testUniqCode( HashMap airports, String code)
     {
         boolean isUniq = true;
-        for (Airport airport : airports){
-            if(airport.getCode().equals(code))
+
+            if(airports.containsKey(code))
             {
                 isUniq = false;
             }
-        }
         return isUniq;
     }
 }
