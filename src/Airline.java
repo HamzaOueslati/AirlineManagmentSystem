@@ -85,11 +85,9 @@ public class Airline {
 
     public Flight findFlight(String flightId) {
         if (flights.containsKey(flightId)) {
-            System.out.println("Vol: " + flightId + "trouve dans la liste de vols");
+            System.out.println("Vol: " + flightId + " a ete trouve dans la liste de vols");
             return flights.get(flightId);
         }
-        else
-            System.out.println("Le vol que vous renseignez n'existe pas!");
         return null;
     }
 

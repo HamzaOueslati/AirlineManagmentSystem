@@ -87,6 +87,7 @@ public class Flight {
             return false;
         }
 
+
         //SeatID seatID = new SeatID(row, col);
         //Seat seat = new Seat(seatID);
         flightSection.add(new FlightSection(flightID, seatClass, row, col));
@@ -111,4 +112,6 @@ public class Flight {
         else
             return false;
     }
+
+
 }
