@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by hamza on 02/11/2015.
@@ -11,7 +10,24 @@ public class FlightSection {
     private int row;
     private int col;
 
-    private ArrayList<Seat> seats = new ArrayList<>();
+    HashMap<SeatID, Seat> seats = new HashMap<>();
+
+
+    public HashMap<SeatID, Seat> getSeats() {
+        return seats;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
 
     public FlightSection(String id, SeatClass section, int row, int col) {
         this.id = id;
@@ -27,7 +43,7 @@ public class FlightSection {
                 SeatID seatID = new SeatID(i, columnSeat);
                 columnSeat++;
                 Seat seat = new Seat(seatID);
-                seats.add(seat);
+                seats.put(seat.getSeatNum(), seat);
             }
         }
     }
@@ -37,15 +53,12 @@ public class FlightSection {
     }
 
     public boolean hasAvailableSeats() {
-        // boucle for In pour boucler dans la ArrayList
-        for(Seat seat: seats)
-        {
-            // Pour toutes les rangées, regarder si un siège est réservé.
-            if (!seat.getStatus()){
+        Iterator it = seats.entrySet().iterator();
+        while (it.hasNext()) {
+            if (seats.get(it.next()).getStatus() == false)
                 return true;
-            }
-        }
 
+        }
         return false;
     }
 
@@ -58,5 +71,21 @@ public class FlightSection {
 
     public void display() {
         seat.display();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FlightSection)) return false;
+
+        FlightSection that = (FlightSection) o;
+
+        return getId().equals(that.getId());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 }

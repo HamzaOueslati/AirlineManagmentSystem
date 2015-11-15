@@ -42,7 +42,10 @@ public class Flight {
 
     public boolean hasSection()
     {
-        return true;
+        if (flightSection.isEmpty())
+            return false;
+        else
+            return true;
     }
 
     public boolean hasSeats()
@@ -87,9 +90,6 @@ public class Flight {
             return false;
         }
 
-
-        //SeatID seatID = new SeatID(row, col);
-        //Seat seat = new Seat(seatID);
         flightSection.add(new FlightSection(flightID, seatClass, row, col));
 
         return true;
@@ -99,6 +99,7 @@ public class Flight {
     {
         return seatClass;
     }
+
 
     /*public void bookSeat(SeatClass seatClass, SeatID seatID)
     {

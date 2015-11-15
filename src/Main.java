@@ -27,29 +27,29 @@ public class Main {
 
         // Flights
         res.createFlight("DELTA", "DEN", "LON", 2008, 11, 12, "123");
+        res.createFlight("DELTA", "DEN", "LON", 2008, 11, 12, "894");
         res.createFlight("DELTA", "DEN", "DEH", 2009, 8, 9, "567");
         res.createFlight("DELTA", "DEN", "NCE", 2010, 9, 8, "567"); //I n v a l i d e
 
         // Sections
         res.createSection("DELTA", "123", 1, 2, SeatClass.ECO, "SECTION_ECO");
-        res.createSection("DELTA", "123", 4, 2, SeatClass.FIRST, "SECTION_ECO");
-        res.createSection("DELTA", "123", 5, 2, SeatClass.BUSI, "SECTION_ECO");
-        //res.createSection("AIRFR", "567", 2, 2, SeatClass.BUSI, "SECTION_ECO");
-        //res.createSection("AMER", "124", 3, 2, SeatClass.BUSI, "SECTION_ECO");
-        //res.createSection("SWSERTT",12, 'D',SeatClass.ECO); //I n v a l i d e
+        res.createSection("DELTA", "123", 4, 2, SeatClass.FIRST, "SECTION_FIRST");
+        res.createSection("DELTA", "123", 5, 2, SeatClass.BUSI, "SECTION_BUSI");
+        res.createSection("DELTA", "123", 8, 2, SeatClass.BUSI, "SECTION_BUSI");
+        //res.createSection("DELTA", "123", 150, 2, SeatClass.BUSI, "SECTION_BUSI"); // Invalide, nb Rangs trop grand
 
         //res.displaySystemDetails();
 
         res.findAvailableFlights("DEN", "LON");
 /*
-        res.bookSeat("DELTA", "123", SeatClass.business, 1, 'A' );
-        res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A' );
-        res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B' );
-        res.bookSeat("DELTA", "123", SeatClass.business, 1,'A' ); //Deja r e s e r v e
+        res.bookSeat("DELTA", "123", SeatClass.ECO, 1, 'A' );
+        res.bookSeat("DELTA", "123", SeatClass.ECO, 1, 'A' );
+        res.bookSeat("DELTA", "123", SeatClass.ECO, 1, 'B' );
+        res.bookSeat("DELTA", "123", SeatClass.BUSI, 1,'A' ); //Deja r e s e r v e*/
 
-        res.displaySystemDetails();*/
+        //res.displaySystemDetails();*/
 
-        res.findAvailableFlights("DEN", "LON");
+        //res.findAvailableFlights("DEN", "LON");
     }
 }
 

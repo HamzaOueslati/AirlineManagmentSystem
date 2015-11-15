@@ -43,7 +43,7 @@ public class Airline {
         //TODO: Faire
     }
 
-    /*public void bookFlight(String flightID, SeatClass seatClass, int row, char col) {
+   /* public void bookFlight(String flightID, SeatClass seatClass, int row, char col) {
         Flight flight = flights.get(flightID);
         SeatID seatID = new SeatID(row, col);
         flight.bookSeat(seatClass, seatID);
@@ -104,6 +104,7 @@ public class Airline {
         }
         return flightsAvailable;
     }
+
 
     public boolean createSection(String flightID, int row, int col, SeatClass seatClass, String id) {
         boolean createSection = false;

@@ -32,7 +32,6 @@ public class SystemManager {
     // Constructeur du System Manager
     private SystemManager(){}
 
-
     public boolean createAirport(String code)
     {
         boolean isValidAirport = Airport.testCode(code);
@@ -117,7 +116,7 @@ public class SystemManager {
         return null;
     }
 
-    public void bookSeat(String air, String flightID, SeatClass seatClass, int row, char col) {
-    }
+    /*public void bookSeat(String air, String flightID, SeatClass seatClass, int row, char col) {
+    }*/
 
 }
